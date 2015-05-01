@@ -58,7 +58,8 @@ This program does not use any third-party libraries.
 
 
 *****System Requirements*****
-Program is not OS specific, can be run thought command prompt/terminal
+.exe works through windows, unsure if there is a way to run through linux terminal.
+You can import all files into codeblocks to run through linux
 
 
 *****Group Members*****

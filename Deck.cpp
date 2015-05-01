@@ -3,7 +3,6 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <time.h>
 
 using namespace std;
 
@@ -136,43 +135,7 @@ void Deck::resetDeck(){
         A deck has been initialized.
 */
 void Deck::shuffle(){
-	//random_shuffle(deck.begin(), deck.end());
-	randomShuffle();
-}
-
-/*
-	Function prototype:
-        void Deck::randomShuffle()
-    Function description:
-        It randomly shuffles the deck by using a temporary deck.
-    Example:
-        Deck d;
-        d.randomShuffle();
-    Precondition:
-        A deck has been initialized.
-*/
-void Deck::randomShuffle()
-{
-	srand(time(NULL));
-	int position = 0;
-	Card newCard;
-	vector<Card> newDeck;
-	while(!deck.empty())
-	{
-		position = (rand()+position*4)%deck.size();
-		newCard = deck[position];
-		newDeck.push_back(newCard);
-		for(int j = position; j < deck.size()-1; j++)
-		{
-			deck[j] = deck[j+1];
-		}
-		deck.pop_back();
-	}
-	while(!newDeck.empty())
-	{
-		deck.push_back(newDeck.back());
-		newDeck.pop_back();
-	}
+	random_shuffle(deck.begin(), deck.end());
 }
 
 //A secondary function to deal(), this one allows for multiple
@@ -188,6 +151,16 @@ void Deck::dealX(int num){
 			printCard(temp);
 			num--;
 		}
+	}
+	if(deck.size() == 0){
+        int choice;
+        cout<<"The deck is out of cards"<<endl;
+        cout<<"Press 1 for a new deck"<<endl;
+        cin >> choice;
+        if(choice == 1){
+            resetDeck();
+            shuffle();
+        }
 	}
 }
 
